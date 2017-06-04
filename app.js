@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const query = require("./query.js");
 
 app.use(express.static("assets"));
 app.set("view engine", "ejs");
