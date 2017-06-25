@@ -1,18 +1,32 @@
-const express = require("express");
+// require('dotenv').config();
+const express = require('express');
 const app = express();
-const query = require("./query.js");
+const bodyParser = require('body-parser');
+const Bboard = require('./board');
 
-app.use(express.static("assets"));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(express.static('"assets"'));
 app.set("view engine", "ejs");
 
+function renderBoard(res, message) {
+	Bboard.getAll().then(function(message) {
+		res.render("board", {
+			// title: title,
+			message: message,
+		});
+	});
+}
+
+app.get("/", function(req, res) {
+	renderBoard(res);
+});
 
 
 
 
-
-
-
-
-app.listen(3000, function() {
-	console.log("Your server is available at http://localhost:3000");
+const port = process.env.PORT || 3000;
+app.listen(port, function() {
+	console.log("Listening on port" + port);
 });

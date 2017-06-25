@@ -9,6 +9,10 @@ const config = {
 };
 
 const pool = new pg.Pool(config);
+// 
+// pool.query("SELECT * FROM messages")
+// 	.then()
+
 
 
 pool.on("error", function(err) {
