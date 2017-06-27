@@ -23,6 +23,16 @@ app.get("/", function(req, res) {
 	renderBoard(res);
 });
 
+app.get("/new", function(req, res) {
+	res.render('newmsg');
+});
+
+app.post("/", function(req, res) {
+	Bboard.add([req.body.title, req.body.body])
+		.then(function() {
+			renderBoard(res, "Saved " + req.body.title);
+		});
+});
 
 
 
