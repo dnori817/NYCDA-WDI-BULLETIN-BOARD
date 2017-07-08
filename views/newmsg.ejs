@@ -12,6 +12,9 @@
 			<textarea name="body" placeholder="Message"></textarea>
 			<button>Submit</button>
 
+			<% if (message) { %>
+					<p class="message"><%- message %></p>
+			<% } %>
 		</form>
 	</body>
 </html>

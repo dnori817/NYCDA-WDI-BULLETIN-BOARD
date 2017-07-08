@@ -24,19 +24,31 @@ app.get("/", function(req, res) {
 });
 
 app.get("/new", function(req, res) {
-	res.render('newmsg');
+	res.render('newmsg', {
+		message: req.query.message,
+	});
 });
 
 app.post("/", function(req, res) {
+	if (req.body.title==="" || req.body.body === "") {
+		res.redirect("/new?message=Please%20Fill%20Out%20Both%20Fields");
+		return;
+	}
+
+
+
+
+
 	Bboard.add([req.body.title, req.body.body])
 		.then(function() {
 			renderBoard(res, "Saved " + req.body.title);
 		});
+
 });
 
 
 
 const port = process.env.PORT || 3000;
 app.listen(port, function() {
-	console.log("Listening on port" + port);
+	console.log("Listening on port " + port);
 });
