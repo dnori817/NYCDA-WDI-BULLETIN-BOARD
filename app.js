@@ -7,7 +7,7 @@ const Bboard = require('./board');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(express.static('"assets"'));
+app.use(express.static("assets"));
 app.set("view engine", "ejs");
 
 function renderBoard(res, message) {

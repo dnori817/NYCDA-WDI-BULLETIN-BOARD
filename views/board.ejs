@@ -2,16 +2,31 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title></title>
+		<link rel="stylesheet" types="text.css" href="/css/normalize.css">
+	<link rel="stylesheet" types="text.css" href="/css/skeleton.css">
+	<link rel="stylesheet" types="text.css" href="/css/style.css">
+		<title>Bulletin Board</title>
 	</head>
 	<body>
-		<table>
+		<div class="message">
+			<div class="title">
+
+			<h1>Bulletin Board</h1>
+			<h5><a href="/new" class="link">leave a message</a></h5>
+		</div>
+		<div class="container">
+		<table class="u-full-width">
 			<% for (let i = 0; i < message.length; i++) { %>
 				<tr>
-					<td><%= message[i].title %> </td>
-			 		<td><%= message[i].body %> </td>
+					<td class="message-title"><%= message[i].title %> </td>
 				</tr>
+				<tr class="message-body-row">
+			 		<td class="message-body"><%= message[i].body %> </td>
+				</tr>
+
 			<% } %>
 		</table>
+	</div>
+</div>
 	</body>
 </html>
