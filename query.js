@@ -1,19 +1,14 @@
 const pg = require("pg");
 
 const config = {
-	user: "nori",
-	database: "bulletinboard",
-	password: "xxxxxxx",
-	host: "localhost",
-	port: 5432,
+	database: process.env.DB_NAME,
+	user: process.env.DB_USER,
+	password: process.env.DB_PASSWORD,
+	host: process.env.DB_HOST || "localhost",
+	port: process.env.DB_PORT || 5432,
 };
 
 const pool = new pg.Pool(config);
-// 
-// pool.query("SELECT * FROM messages")
-// 	.then()
-
-
 
 pool.on("error", function(err) {
 	console.error("Postgres query pool encountered an error" ,err);

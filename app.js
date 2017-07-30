@@ -1,4 +1,4 @@
-// require('dotenv').config();
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -13,7 +13,6 @@ app.set("view engine", "ejs");
 function renderBoard(res, message) {
 	Bboard.getAll().then(function(message) {
 		res.render("board", {
-			// title: title,
 			message: message,
 		});
 	});
@@ -24,26 +23,21 @@ app.get("/", function(req, res) {
 });
 
 app.get("/new", function(req, res) {
-	res.render('newmsg', {
+	res.render("newmsg", {
 		message: req.query.message,
 	});
 });
 
 app.post("/", function(req, res) {
-	if (req.body.title==="" || req.body.body === "") {
+	if (req.body.title === "" || req.body.body === "") {
 		res.redirect("/new?message=Please%20Fill%20Out%20Both%20Fields");
 		return;
 	}
-
-
-
-
 
 	Bboard.add([req.body.title, req.body.body])
 		.then(function() {
 			renderBoard(res, "Saved " + req.body.title);
 		});
-
 });
 
 
